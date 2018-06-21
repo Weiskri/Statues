@@ -14,14 +14,13 @@ namespace Statues
 
             List<int> inputs = new List<int>();
 
-            List<int> statueSizesNeeded = new List<int>();
-
-            Console.WriteLine("Hello, Ratiorg! To determine how many statues you need to complete your collection, I will ask you for your current statue sizes.");
+            Console.WriteLine("Hello, Ratiorg! To determine how many statues you need to complete your collection, I will ask for your current statue sizes.");
             Console.WriteLine();
             Console.WriteLine("To begin, please enter the size of one of your statues.");
             userInput = int.Parse(Console.ReadLine());
             inputs.Add(userInput);
 
+            // adds user inputs to the list until the user presses 0
             while (userInput != 0)
             {
                 Console.WriteLine("Please enter the size of your next statue, or press 0 to determine how many statues you need to complete your collection.");
@@ -37,25 +36,27 @@ namespace Statues
 
             }
 
+            // sorts user inputs and then gets the first and last items to determine the range
             inputs.Sort();
-
-            Console.WriteLine("The sizes you entered are: ");
-            inputs.ForEach(Console.WriteLine);
 
             int firstInput = inputs.First();
             int lastInput = inputs.Last();
 
-            IEnumerable<int> sequence = Enumerable.Range(firstInput, (inputs.Count - 1));
+            List<int> sequencedNums = new List<int>(firstInput);
+            
+            for (int i = firstInput; i<=lastInput; i++)
+            {
+                sequencedNums.Add(firstInput++);
+            }
 
-            Console.WriteLine(sequence);
+            // compares the two lists, putting elements that are in list 2 (sequencedNums) but not in list 1 into a separate list
+            var diff = sequencedNums.Except(inputs).ToList();
 
-            //for (int i=0; i < inputs.Count; i++)
-            //{
-            //    if (((inputs[i+1] - inputs[i]) > 1) == true) {
-            //        statueSizesNeeded.Add((inputs[i] + 1));
-            //    }
+            Console.WriteLine("Ratiorg needs : " + diff.Count + " statues to complete his collection.");
 
-            //}
+            Console.WriteLine("He needs statues with sizes:");
+            diff.ForEach(Console.WriteLine);
+
             Console.ReadLine();
             
             
