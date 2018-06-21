@@ -14,7 +14,7 @@ namespace Statues
 
             List<int> inputs = new List<int>();
 
-            Console.WriteLine("Hello, Ratiorg! To determine how many statues you need to complete your collection, I will ask for your current statue sizes.");
+            Console.WriteLine("Hello, Ratiorg! Let's determine how many statues you need to complete your collection.");
             Console.WriteLine();
             Console.WriteLine("To begin, please enter the size of one of your statues.");
             userInput = int.Parse(Console.ReadLine());
@@ -52,7 +52,7 @@ namespace Statues
             // compares the two lists, putting elements that are in list 2 (sequencedNums) but not in list 1 into a separate list
             var diff = sequencedNums.Except(inputs).ToList();
 
-            Console.WriteLine("Ratiorg needs : " + diff.Count + " statues to complete his collection.");
+            Console.WriteLine("Ratiorg needs : " + diff.Count + " statues to complete the collection.");
 
             Console.WriteLine("He needs statues with sizes:");
             diff.ForEach(Console.WriteLine);
